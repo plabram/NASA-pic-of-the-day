@@ -49,8 +49,6 @@ function App() {
       <img src="./assets/NASA_logo.png" alt="NASA insignia" />
       <h1>Imagen astronómica del día</h1>
 
-      <Selector />
-
       <div>
         <p>Esta imagen corresponde con la fecha: <strong>{APOD.date}</strong></p>
         <label htmlFor='date-select'>Select date</label>
