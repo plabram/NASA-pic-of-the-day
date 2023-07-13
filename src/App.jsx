@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { NASA_URL, NASA_API_KEY } from './api/data';
 import './App.css'
 import Card from './components/Card';
-import Selector from './components/Selector';
+// import Selector from './components/Selector';
 
 function App() {
   const today = new Date(Date.now()).toISOString().slice(0, 10);
