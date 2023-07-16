@@ -4,12 +4,15 @@ import './App.css'
 import Card from './components/Card';
 import { useForm } from 'react-hook-form';
 import Form from './components/Form';
+import Header from './components/Header';
 
 function App() {
   const today = new Date(Date.now()).toISOString().slice(0, 10);
   const [date, setDate] = useState(today)
+  const mainTitle = "Imagen astronómica del día"
   const [APOD, setAPOD] = useState({})
   const [mission, setMission] = useState("all")
+
   const { handleSubmit, register } = useForm({
     defaultValues: {
       date: date,
@@ -23,8 +26,6 @@ function App() {
   }
 
   useEffect(() => {
-
-    //PERFORM API CALL
 
     //WITH FETCH
 
@@ -78,16 +79,12 @@ function App() {
 
   }, [date, mission])
 
-
   return (
     <>
 
-      <img src="../public/NASA_logo.svg" alt="NASA insignia" />
-      <h1>Imagen astronómica del día</h1>
-
+      <Header mainTitle={mainTitle} />
       <p>Esta imagen corresponde con la fecha: <strong>{date}</strong></p>
       <p> {mission === "rover" ? "Viene de la misión Mars Rover" : null}</p>
-
       <Form register={register} handleSubmit={handleSubmit} onSubmit={onSubmit} today={today} />
       <Card apod={APOD} />
 
