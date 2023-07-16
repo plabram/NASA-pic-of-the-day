@@ -59,7 +59,7 @@ function App() {
     <>
 
       <Header mainTitle={mainTitle} />
-      <p>Esta imagen corresponde con la fecha: <strong>{date}</strong>. {mission === "rover" ? "Viene de la misión Mars Rover" : null}.</p>
+      <p>Esta imagen corresponde con la fecha: <strong>{date}</strong>. {mission === "rover" ? "Viene de la misión Mars Rover." : null}</p>
       <Form register={register} handleSubmit={handleSubmit} onSubmit={onSubmit} today={today} />
       <Card apod={APOD} />
       <Footer />
