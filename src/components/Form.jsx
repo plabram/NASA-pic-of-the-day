@@ -19,8 +19,7 @@ const Form = ({ register, handleSubmit, onSubmit, today }) => {
             {...register("mission")}
             type="radio"
             id="all"
-            value="all"
-            checked
+            value={"all"}
           ></input>
         </span>
         <span>

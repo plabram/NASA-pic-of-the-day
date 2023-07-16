@@ -13,10 +13,8 @@ function App() {
   const [date, setDate] = useState(today)
   const mainTitle = "Imagen astronómica del día"
   const [APOD, setAPOD] = useState({})
-  const URL = `${NASA_URL}planetary/apod?date=${date}&api_key=${NASA_API_KEY}`
-  const roverURL = `${NASA_URL}planetary/apod?date=${date}&api_key=${NASA_API_KEY}`
-
-  const [mission, setMission] = useState(URL)
+  const [mission, setMission] = useState("all")
+  const normalURL = `${NASA_URL}planetary/apod?date=${date}&api_key=${NASA_API_KEY}`
 
   const { handleSubmit, register } = useForm({
     defaultValues: {
@@ -27,7 +25,7 @@ function App() {
 
   const onSubmit = (values) => {
     setDate(values.date.toLocaleString())
-    setMission((values.mission === "all") ? URL : roverURL)
+    setMission(values.mission)
   }
 
 
@@ -37,9 +35,16 @@ function App() {
     //VERSIÓN CON FETCH
 
     // const getAPOD = async () => {
-    //     const data = await fetch(mission)
+    //   if (mission === "rover") {
+    //     console.log("the Rover API call will go here")
+    //     const data = await fetch(normalURL)
     //     const nasaToJson = await data.json()
     //     return {...nasaToJson}
+    //   } else {
+    //     const data = await fetch(normalURL)
+    //     const nasaToJson = await data.json()
+    //     return {...nasaToJson}
+    //   }
     // }
 
     // getAPOD().then((i) => {
@@ -48,18 +53,21 @@ function App() {
 
     // VERSIÖN CON AXIOS
 
-    (mission === "rover" ? axios.get(mission) : axios.get(mission))
+    (mission === "rover" ? axios.get(normalURL) : axios.get(normalURL))
       .then((i) => {
         setAPOD(i.data)
       })
       .catch((error) => { console.log(error) })
-  }, [date, mission])
+
+
+
+  }, [date, mission, normalURL])
 
   return (
     <>
 
       <Header mainTitle={mainTitle} />
-      <p>Esta imagen corresponde con la fecha: <strong>{date}</strong>. {mission === "rover" ? "Viene de la misión Mars Rover." : null}</p>
+      <p>Esta imagen corresponde con la fecha: <strong>{date}</strong>. {mission === "rover" ? "Viene de la misión Mars Rover" : null}.</p>
       <Form register={register} handleSubmit={handleSubmit} onSubmit={onSubmit} today={today} />
       <Card apod={APOD} />
       <Footer />
