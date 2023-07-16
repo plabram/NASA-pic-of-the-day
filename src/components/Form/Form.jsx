@@ -1,3 +1,5 @@
+import "./Form.css"
+
 const Form = ({ register, handleSubmit, onSubmit, today }) => {
 
   return (
