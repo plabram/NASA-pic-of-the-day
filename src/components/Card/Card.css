@@ -2,3 +2,7 @@
   max-height: 100vh;
   overflow: scroll;
 }
+
+.card-image, .card > p {
+  max-width: 100%;
+}
