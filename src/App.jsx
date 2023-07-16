@@ -3,12 +3,12 @@ import { NASA_URL, NASA_API_KEY } from './api/data';
 import './App.css'
 import Card from './components/Card';
 import { useForm } from 'react-hook-form';
+import Form from './components/Form';
 
 function App() {
   const today = new Date(Date.now()).toISOString().slice(0, 10);
   const [date, setDate] = useState(today)
   const [APOD, setAPOD] = useState({})
-  // const [roverAPOD, setRoverAPOD] = useState({})
   const [mission, setMission] = useState("all")
   const { handleSubmit, register } = useForm({
     defaultValues: {
@@ -82,52 +82,13 @@ function App() {
   return (
     <>
 
-      {/* <img src="./assets/NASA_logo.png" alt="NASA insignia" /> */}
+      <img src="../public/NASA_logo.svg" alt="NASA insignia" />
       <h1>Imagen astronómica del día</h1>
 
       <p>Esta imagen corresponde con la fecha: <strong>{date}</strong></p>
       <p> {mission === "rover" ? "Viene de la misión Mars Rover" : null}</p>
 
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <div>
-          <br />
-          <label htmlFor='date-select'>Elegir fecha</label>
-          <input
-            {...register("date")}
-            type='date'
-            id="date-select"
-            max={today}></input>
-        </div>
-
-        <br />
-
-        <legend>Imágenes de:</legend>
-        <div>
-          <span>
-            <label htmlFor="all">Todos los planetas</label>
-            <input
-              {...register("mission")}
-              type="radio"
-              id="all"
-              value="all"
-            ></input>
-          </span>
-          <span>
-            <label htmlFor="mars-rover">Mars (Mars Rover)</label>
-            <input
-              {...register("mission")}
-              type="radio"
-              id="mars-rover"
-              value="rover"
-            ></input>
-          </span>
-        </div>
-        <br />
-        <button>¡Vamos!</button>
-      </form>
-
-      <br />
-
+      <Form register={register} handleSubmit={handleSubmit} onSubmit={onSubmit} today={today} />
       <Card apod={APOD} />
 
     </>
