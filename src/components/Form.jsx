@@ -20,6 +20,7 @@ const Form = ({ register, handleSubmit, onSubmit, today }) => {
             type="radio"
             id="all"
             value="all"
+            checked
           ></input>
         </span>
         <span>
