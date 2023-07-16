@@ -3,18 +3,18 @@ import "./Form.css"
 const Form = ({ register, handleSubmit, onSubmit, today }) => {
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <div>
-        <label htmlFor='date-select'>Elegir fecha</label>
+    <form onSubmit={handleSubmit(onSubmit)} className="apod-form">
+      <div className="date-select">
+        <label htmlFor='date-select'><strong>Elegir fecha:</strong></label>
         <input
           {...register("date")}
           type='date'
           id="date-select"
           max={today}></input>
       </div>
-      <div>
-        <legend>Imágenes de:</legend>
 
+      <div className="radio">
+        <legend><strong>Imágenes de:</strong></legend>
         <span>
           <label htmlFor="all">Todos los planetas</label>
           <input
@@ -33,10 +33,8 @@ const Form = ({ register, handleSubmit, onSubmit, today }) => {
             value="rover"
           ></input>
         </span>
-
-        <br />
-        <button>¡Vamos!</button>
       </div>
+      <button className="form-button">¡Vamos!</button>
     </form>
 
   )

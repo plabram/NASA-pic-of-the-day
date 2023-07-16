@@ -1,3 +1,5 @@
+import "./Card.css"
+
 const Card = ({ apod }) => {
   return (
     <div className="card">

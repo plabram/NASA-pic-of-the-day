@@ -1,0 +1,16 @@
+.apod-form {
+  border: solid 1px whitesmoke;
+  max-width: 300px;
+  display: inline-block;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.apod-form > * {
+  padding:10px
+}
+
+.radio, .date-select {
+  display: flex;
+  flex-direction: column;
+}

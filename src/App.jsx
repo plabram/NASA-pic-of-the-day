@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react'
 import { NASA_URL, NASA_API_KEY } from './api/data';
 import './App.css'
-import Card from './components/Card';
+import Card from './components/Card/Card';
 import { useForm } from 'react-hook-form';
 import Form from './components/Form/Form';
 import Header from './components/Header/Header';
-import Footer from './components/Footer';
+import Footer from './components/Footer/Footer';
 import axios from 'axios';
 
 function App() {
@@ -67,7 +67,8 @@ function App() {
     <>
 
       <Header mainTitle={mainTitle} />
-      <p>Esta imagen corresponde con la fecha: <strong>{date}</strong>. {mission === "rover" ? "Viene de la misión Mars Rover." : null}</p>
+      <p>Esta imagen corresponde con la fecha: <strong>{date}</strong>.<br />
+        {mission === "rover" ? "Viene de la misión Mars Rover." : null}</p>
       <Form register={register} handleSubmit={handleSubmit} onSubmit={onSubmit} today={today} />
       <Card apod={APOD} />
       <Footer />
