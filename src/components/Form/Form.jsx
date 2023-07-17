@@ -1,8 +1,9 @@
 import "./Form.css"
 
-const Form = ({ register, handleSubmit, onSubmit, today }) => {
+const Form = ({ register, handleSubmit, onSubmit, today, formInput }) => {
+
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="apod-form">
+    <form onSubmit={handleSubmit(onSubmit)} className="apod-form" ref={formInput}>
       <div className="date-select">
         <label htmlFor="date-select">
           <strong>Elegir fecha:</strong>
