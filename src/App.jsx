@@ -10,7 +10,6 @@ import Footer from "./components/Footer/Footer"
 
 function App() {
   const today = new Date(Date.now()).toISOString().slice(0, 10)
-  const formInput = useRef(null)
   const [date, setDate] = useState(today)
   const [APOD, setAPOD] = useState({
     title: "",
@@ -32,11 +31,8 @@ function App() {
   })
 
   const onSubmit = (values) => {
-    const inputValue = formInput.current?.values
-    if (inputValue) {
-      setDate(values.date.toLocaleString())
-      setMission(values.mission)
-    }
+    setDate(values.date.toLocaleString())
+    setMission(values.mission)
   }
 
   useEffect(() => {
@@ -63,6 +59,7 @@ function App() {
     if (mission === "rover") {
       axios.get(roverURL)
         .then((i) => {
+          console.log(roverURL)
           if (i.data.photos[0]) {
             setAPOD({
               title: i.data.photos[0].camera.name,
@@ -116,7 +113,6 @@ function App() {
         handleSubmit={handleSubmit}
         onSubmit={onSubmit}
         today={today}
-        formInput={formInput}
       />
       <Card apod={APOD} />
       <Footer />
