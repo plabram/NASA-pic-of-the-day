@@ -15,6 +15,8 @@ function App() {
   const [APOD, setAPOD] = useState({})
   const [mission, setMission] = useState("all")
   const normalURL = `${NASA_URL}planetary/apod?date=${date}&api_key=${NASA_API_KEY}`
+  // De normal roverURL debería ser algo así: (`${NASA_URL}mars-photos/api/v1/rovers/curiosity/photos?earth-date=${date}&api_key=${NASA_API_KEY}`)
+  const roverURL = normalURL
 
   const { handleSubmit, register } = useForm({
     defaultValues: {
@@ -36,7 +38,6 @@ function App() {
 
     // const getAPOD = async () => {
     //   if (mission === "rover") {
-    //     console.log("the Rover API call will go here")
     //     const data = await fetch(normalURL)
     //     const nasaToJson = await data.json()
     //     return {...nasaToJson}
@@ -53,7 +54,7 @@ function App() {
 
     // VERSIÖN CON AXIOS
 
-    (mission === "rover" ? axios.get(normalURL) : axios.get(normalURL))
+    (mission === "rover" ? axios.get(normalURL) : axios.get(roverURL))
       .then((i) => {
         setAPOD(i.data)
       })
