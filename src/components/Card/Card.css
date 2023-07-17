@@ -3,6 +3,7 @@
   overflow: scroll;
 }
 
-.card-image, .card > p {
+.card-image,
+.card > p {
   max-width: 100%;
 }
