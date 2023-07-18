@@ -55,50 +55,52 @@ function App() {
     // })
 
     // VERSIÖN CON AXIOS
+    const apiCall = async () => {
+      if (mission === "rover") {
+        await axios.get(roverURL)
+          .then((i) => {
+            console.log(roverURL)
+            if (i.data.photos[0]) {
+              setAPOD({
+                title: i.data.photos[0].camera.name,
+                url: i.data.photos[0].img_src,
+                copyright: null,
+                date: date,
+                explanation: `This photo was taken on ${i.data.photos[0].earth_date}, which is measured as ${i.data.photos[0].sol} sols on Mars 🌔.`
 
-    if (mission === "rover") {
-      axios.get(roverURL)
-        .then((i) => {
-          console.log(roverURL)
-          if (i.data.photos[0]) {
-            setAPOD({
-              title: i.data.photos[0].camera.name,
-              url: i.data.photos[0].img_src,
-              copyright: null,
-              date: date,
-              explanation: `This photo was taken on ${i.data.photos[0].earth_date}, which is measured as ${i.data.photos[0].sol} sols on Mars 🌔.`
+              })
+            }
+            else {
+              setAPOD({
+                title: "",
+                url: "",
+                copyright: null,
+                date: date,
+                explanation: "Mars Rover didn't take any pictures on this day."
+              })
+            }
 
-            })
-          }
-          else {
-            setAPOD({
-              title: "",
-              url: "",
-              copyright: null,
-              date: date,
-              explanation: "Mars Rover didn't take any pictures on this day."
-            })
-          }
-
-        })
-        .catch((error) => {
-          console.log(error)
-        })
-    } else {
-      axios.get(normalURL)
-        .then((i) => {
-          setAPOD({
-            title: i.data.title,
-            url: i.data.url,
-            copyright: i.data.copyright,
-            date: date,
-            explanation: i.data.explanation
           })
-        })
-        .catch((error) => {
-          console.log(error)
-        })
+          .catch((error) => {
+            console.log(error)
+          })
+      } else {
+        await axios.get(normalURL)
+          .then((i) => {
+            setAPOD({
+              title: i.data.title,
+              url: i.data.url,
+              copyright: i.data.copyright,
+              date: date,
+              explanation: i.data.explanation
+            })
+          })
+          .catch((error) => {
+            console.log(error)
+          })
+      }
     }
+    apiCall()
   }, [date, mission])
 
   return (
